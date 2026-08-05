@@ -15,11 +15,31 @@
     }
     body {
       font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: #ffffff;
       color: #222;
       line-height: 1.6;
       overflow-x: hidden;
+      background-image: url('https://img.magnific.com/premium-photo/architectural-drawing-background_90380-10921.jpg?semt=ais_hybrid&w=740');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-color: #ffffff;
     }
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .container, header, footer, section {
+      position: relative;
+      z-index: 1;
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -40,10 +60,6 @@
         repeating-linear-gradient(90deg, rgba(0,0,0,0.008) 0px, rgba(0,0,0,0.008) 1px, transparent 1px, transparent 20px);
       pointer-events: none;
       z-index: 0;
-    }
-    .container, header, footer, section {
-      position: relative;
-      z-index: 1;
     }
 
     @keyframes fadeInUp {
@@ -84,21 +100,19 @@
       background: #000;
     }
 
-    /* ----- Увеличенные отступы для якорей (особенно на мобилках) ----- */
     #services, #about, #contacts {
-      scroll-margin-top: 90px; /* десктоп */
+      scroll-margin-top: 90px;
     }
 
     header {
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(4px);
       border-bottom: 2px solid #000;
       padding: 14px 0;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(4px);
-      background: rgba(255,255,255,0.95);
     }
     header .container {
       display: flex;
@@ -210,6 +224,62 @@
       transform: translateY(-9.5px) rotate(-45deg);
     }
 
+    /* ---- ВЫПАДАЮЩЕЕ МЕНЮ "Связаться" ---- */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-btn {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      white-space: nowrap;
+    }
+    .dropdown-btn:hover {
+      background: #333;
+      transform: scale(1.02);
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 110%;
+      background: #fff;
+      min-width: 160px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      overflow: hidden;
+      z-index: 200;
+      border: 1px solid #eee;
+    }
+    .dropdown-content.show {
+      display: block;
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #000;
+      font-weight: 500;
+      transition: background 0.2s;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+    .dropdown-content a:hover {
+      background: #f5f5f5;
+    }
+    .dropdown-content a i {
+      margin-right: 8px;
+    }
+
     .header-contacts {
       text-align: right;
     }
@@ -234,6 +304,7 @@
       text-align: right;
     }
 
+    /* ----- Герой ----- */
     .hero {
       padding: 50px 0 30px;
       text-align: center;
@@ -255,27 +326,10 @@
       max-width: 700px;
       margin: 0 auto 20px;
     }
-    .hero .badge {
-      display: inline-block;
-      background: #000;
-      color: #fff;
-      padding: 6px 20px;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-top: 8px;
-      animation: pulse 2s infinite ease-in-out;
-      transition: transform 0.3s;
-    }
-    .hero .badge:hover {
-      transform: scale(1.05);
-    }
 
     section {
       padding: 40px 0;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
     }
     section:last-of-type {
       border-bottom: none;
@@ -292,14 +346,14 @@
       justify-content: space-between;
       align-items: baseline;
       padding: 8px 0;
-      border-bottom: 1px solid #e8e8e8;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
       font-size: 1.05rem;
       transition: background 0.2s, padding-left 0.2s;
       padding-left: 4px;
       border-radius: 4px;
     }
     .price-item:hover {
-      background: #f5f5f5;
+      background: rgba(0,0,0,0.03);
       padding-left: 12px;
     }
     .price-item .format {
@@ -310,12 +364,6 @@
       font-weight: 600;
       color: #000;
       white-space: nowrap;
-    }
-    .price-item .prices small {
-      font-weight: 300;
-      color: #555;
-      font-size: 0.85rem;
-      margin-left: 6px;
     }
     .price-note {
       color: #666;
@@ -339,72 +387,24 @@
       padding-left: 4px;
     }
 
-    .extra-service {
-      background: #f7f7f7;
-      border-radius: 16px;
-      padding: 25px 28px 18px;
-      margin-top: 30px;
-      border-left: 4px solid #000;
-      transition: box-shadow 0.3s, transform 0.3s;
-    }
-    .extra-service:hover {
-      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-      transform: translateY(-2px);
-    }
-    .extra-service h4 {
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: #000;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .extra-service h4 span {
-      background: #000;
-      color: #fff;
-      font-size: 0.7rem;
-      padding: 2px 14px;
-      border-radius: 30px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-    .extra-service p {
-      color: #444;
-      margin-top: 6px;
-    }
-
-    .about-text {
-      max-width: 800px;
-      color: #333;
-      font-size: 1.05rem;
-    }
-    .about-text p {
-      margin-bottom: 12px;
-    }
-    .about-text .highlight {
-      background: #eee;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-weight: 500;
-      color: #000;
-      transition: background 0.3s;
-    }
-    .about-text .highlight:hover {
-      background: #ddd;
-    }
-
     .contact-block {
       display: flex;
       flex-wrap: wrap;
       gap: 40px;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
     }
     .contact-info {
       flex: 1 1 100%;
       text-align: center;
+    }
+    .contact-info .address {
+      font-size: 1.2rem;
+      color: #444;
+      margin-bottom: 8px;
+    }
+    .contact-info .address strong {
+      color: #000;
     }
     .contact-info .phone-big {
       font-size: 3rem;
@@ -419,15 +419,6 @@
     .contact-info .phone-big:hover {
       transform: scale(1.03);
       text-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    .contact-info .person {
-      font-size: 1.2rem;
-      color: #555;
-      margin-bottom: 6px;
-    }
-    .contact-info .person strong {
-      font-weight: 500;
-      color: #000;
     }
     .contact-info .work-time {
       color: #666;
@@ -464,19 +455,36 @@
       width: 100%;
     }
 
+    .about-text {
+      max-width: 800px;
+      color: #333;
+      font-size: 1.05rem;
+    }
+    .about-text p {
+      margin-bottom: 12px;
+    }
+    .about-text .highlight {
+      background: rgba(0,0,0,0.06);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+      color: #000;
+    }
+
     footer {
-      background: #f7f7f7;
+      background: rgba(247,247,247,0.85);
+      backdrop-filter: blur(4px);
       padding: 30px 0;
       text-align: center;
       color: #666;
       font-size: 0.95rem;
-      border-top: 1px solid #e0e0e0;
+      border-top: 1px solid rgba(0,0,0,0.06);
       margin-top: 20px;
     }
     footer a {
       color: #666;
       text-decoration: none;
-      transition: color 0.3s;
+      transition: 0.3s;
     }
     footer a:hover {
       color: #000;
@@ -488,10 +496,20 @@
         flex-wrap: wrap;
         position: relative;
       }
+      .header-actions {
+        order: 2;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-left: auto;
+      }
+      .dropdown-btn {
+        padding: 6px 14px;
+        font-size: 0.85rem;
+      }
       .burger-btn {
         display: flex;
-        order: 2;
-        margin-left: auto;
+        order: 1;
       }
       .header-contacts {
         order: 3;
@@ -501,10 +519,10 @@
       }
       .header-contacts .phone {
         margin-left: 0;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
       }
       .header-contacts small {
-        text-align: center;
+        display: none;
       }
       .nav-menu {
         order: 4;
@@ -517,7 +535,7 @@
         opacity: 0;
         transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
         margin: 0;
-        background: #fff;
+        background: rgba(255,255,255,0.98);
         border-top: 1px solid #e0e0e0;
         padding: 0 10px;
       }
@@ -552,10 +570,12 @@
       .price-item {
         font-size: 0.95rem;
       }
-
-      /* Увеличенный отступ для якорей на мобилках */
       #services, #about, #contacts {
         scroll-margin-top: 180px;
+      }
+      .dropdown-content {
+        right: -10px;
+        min-width: 150px;
       }
     }
     @media (max-width: 480px) {
@@ -572,47 +592,62 @@
       #services, #about, #contacts {
         scroll-margin-top: 170px;
       }
+      .dropdown-btn {
+        padding: 5px 12px;
+        font-size: 0.8rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="container">
-      <a href="#" class="logo-link" id="logoLink">
+      <!-- Ссылка логотипа ведёт на https://kavproject.ru -->
+      <a href="https://kavproject.ru" class="logo-link" id="logoLink" target="_blank">
         <div class="logo">
           <h1>КавПроект</h1>
           <span>ООО • инженерные решения • полиграфия</span>
         </div>
       </a>
-      <button class="burger-btn" id="burgerBtn" aria-label="Открыть меню">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+
+      <div class="header-actions">
+        <!-- Выпадающее меню "Связаться" -->
+        <div class="dropdown" id="contactDropdown">
+          <button class="dropdown-btn" id="dropdownBtn">📞 Связаться</button>
+          <div class="dropdown-content" id="dropdownContent">
+            <a href="https://wa.me/79280000000" target="_blank">💬 WhatsApp</a>
+            <a href="https://t.me/+79280000000" target="_blank">✈️ Telegram</a>
+          </div>
+        </div>
+        <!-- Бургер -->
+        <button class="burger-btn" id="burgerBtn" aria-label="Открыть меню">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
       <nav class="nav-menu" id="navMenu">
         <a href="#" class="active" id="homeLink">Главная</a>
         <a href="#services">Услуги</a>
         <a href="#about">О нас</a>
         <a href="#contacts">Контакты</a>
       </nav>
+
       <div class="header-contacts">
-        <a href="tel:+79281456263" class="phone">+7 928 145‑62‑63</a>
-        <small>Светлана Головчанская</small>
+        <a href="tel:+79280000000" class="phone">+7 928 000‑00‑00</a>
       </div>
     </div>
   </header>
 
   <section class="hero">
     <div class="container">
-      <div class="badge">Дополнительная услуга</div>
       <h2>Распечатка чертежей <strong>и широкая полиграфия</strong></h2>
       <p>Печать, копирование, сканирование, переплёт, накатка, сувениры — всё для вашего проекта. Работаем с чертежами, документами и макетами.</p>
     </div>
   </section>
 
   <!-- ===== ВСЕ РАЗДЕЛЫ ПРАЙСА (полный список) ===== -->
-
-  <!-- Печать разных форматов -->
   <section id="services">
     <div class="container">
       <h2 class="section-title animate-on-scroll">Печать разных форматов</h2>
@@ -628,7 +663,6 @@
     </div>
   </section>
 
-  <!-- Копирование и сканирование -->
   <section>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Копирование и сканирование</h2>
@@ -648,7 +682,6 @@
     </div>
   </section>
 
-  <!-- Накатка на пенокартон -->
   <section>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Накатка на пенокартон</h2>
@@ -663,7 +696,6 @@
     </div>
   </section>
 
-  <!-- Накатка на гофрокартон -->
   <section>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Накатка на гофрокартон</h2>
@@ -678,7 +710,6 @@
     </div>
   </section>
 
-  <!-- Печать визиток -->
   <section>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Печать визиток</h2>
@@ -690,7 +721,6 @@
     </div>
   </section>
 
-  <!-- Доп. услуги / Канцтовары -->
   <section>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Доп. услуги / Канцтовары</h2>
@@ -714,7 +744,6 @@
     </div>
   </section>
 
-  <!-- Фальцовка -->
   <section>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Фальцовка листов</h2>
@@ -725,7 +754,6 @@
     </div>
   </section>
 
-  <!-- Твёрдый переплет -->
   <section>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Твёрдый переплет дипломов</h2>
@@ -736,7 +764,6 @@
     </div>
   </section>
 
-  <!-- Переплет пластиковой пружиной -->
   <section>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Переплет пластиковой пружиной</h2>
@@ -748,7 +775,6 @@
     </div>
   </section>
 
-  <!-- Фото на документы -->
   <section>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Фото на документы</h2>
@@ -760,7 +786,6 @@
     </div>
   </section>
 
-  <!-- Печать на других материалах -->
   <section>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Печать на других материалах</h2>
@@ -774,7 +799,6 @@
     </div>
   </section>
 
-  <!-- Шильды -->
   <section>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Изготовление шильдов</h2>
@@ -787,7 +811,6 @@
     </div>
   </section>
 
-  <!-- Интерьерная печать -->
   <section>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Интерьерная печать (1440 DPI)</h2>
@@ -801,7 +824,6 @@
     </div>
   </section>
 
-  <!-- Широкоформатная ламинация -->
   <section>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Широкоформатная ламинация</h2>
@@ -815,7 +837,6 @@
     </div>
   </section>
 
-  <!-- Сувениры -->
   <section>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Сувенирная продукция</h2>
@@ -846,11 +867,11 @@
       <h2 class="section-title animate-on-scroll">Контакты</h2>
       <div class="contact-block animate-on-scroll">
         <div class="contact-info">
-          <div class="person"><strong>Светлана Головчанская</strong> — приём заявок</div>
-          <a href="tel:+79281456263" class="phone-big">+7 928 145‑62‑63</a>
+          <div class="address"><strong>📍 Владикавказ, ул. Мичурина, 36</strong></div>
+          <a href="tel:+79280000000" class="phone-big">+7 928 000‑00‑00</a>
           <div class="work-time">Звоните с 9:00 до 20:00 (пн–пт)</div>
           <div class="social-links">
-            <a href="https://wa.me/79281456263" target="_blank">WhatsApp</a>
+            <a href="https://wa.me/79280000000" target="_blank">WhatsApp</a>
             <a href="mailto:info@kavproject.ru">info@kavproject.ru</a>
             <a href="https://kavproject.ru" target="_blank">kavproject.ru</a>
           </div>
@@ -864,7 +885,7 @@
       <p>© 2026 ООО «Кавпроект» — Распечатка чертежей и полиграфия</p>
       <p style="font-size: 0.85rem; margin-top: 4px;">
         <a href="https://kavproject.ru" target="_blank">kavproject.ru</a> •
-        <a href="tel:+79281456263">+7 928 145‑62‑63</a>
+        <a href="tel:+79280000000">+7 928 000‑00‑00</a>
       </p>
     </div>
   </footer>
@@ -887,7 +908,21 @@
         });
       });
 
-      // Плавный скролл с увеличенным отступом для мобильных
+      // Выпадающее меню "Связаться"
+      const dropdownBtn = document.getElementById('dropdownBtn');
+      const dropdownContent = document.getElementById('dropdownContent');
+      dropdownBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dropdownContent.classList.toggle('show');
+      });
+      // Закрыть при клике вне
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+          dropdownContent.classList.remove('show');
+        }
+      });
+
+      // Плавный скролл
       const allLinks = document.querySelectorAll('a[href^="#"]');
       allLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -909,7 +944,7 @@
         });
       });
 
-      // Анимация появления
+      // Анимация
       const elements = document.querySelectorAll('.animate-on-scroll');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
